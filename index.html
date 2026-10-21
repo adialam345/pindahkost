@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PindahKos – Pindahan Ringkas, Tanpa Ribet</title>
+<style>
+:root{--bg:#f4f8ff;--card:#fff;--tx:#14213a;--mu:#586380;--ac:#1f5fd6;--ac2:#fff;--bd:#d9e3f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#172038;--tx:#eaf0ff;--mu:#a3b0cf;--ac:#6ea0ff;--ac2:#0b1530;--bd:#2a3659}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#172038;--tx:#eaf0ff;--mu:#a3b0cf;--ac:#6ea0ff;--ac2:#0b1530;--bd:#2a3659}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:28px;margin:0 0 6px}h2{font-size:18px;margin:26px 0 8px}
+.mu{color:var(--mu)}.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
+.card h3{margin:0;font-size:17px;display:flex;justify-content:space-between;gap:8px}
+.price{color:var(--ac);font-weight:700}
+ul,ol{padding-left:20px;margin:6px 0}
+label{display:block;margin-top:12px;font-weight:600;font-size:14px}
+input,select,textarea{width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+button,.cta{display:block;width:100%;box-sizing:border-box;text-align:center;margin-top:16px;padding:14px;border:0;border-radius:12px;background:var(--ac);color:var(--ac2);font:700 16px system-ui,sans-serif;text-decoration:none}
+.note{font-size:12px;color:var(--mu);margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>PindahKos</h1>
+<p><b>Pindahan Ringkas, Tanpa Ribet.</b></p>
+<p class="mu">Jasa pindahan khusus anak kos, mahasiswa, dan penghuni apartemen studio kecil. Satu paket sudah termasuk kendaraan, tenaga bantu angkat, dan opsi bongkar-pasang furnitur sederhana. Pesan lewat WhatsApp, minimal H-2.</p>
+<a class="cta" href="#minat">Saya Berminat</a>
+
+<h2>Pilih Paket</h2>
+<div class="card"><h3><span>Ringan</span><span class="price">Rp150.000</span></h3>
+<p class="mu" style="margin:6px 0 0">1 motor bak + 1 tenaga bantu, jarak ≤5 km. Cocok untuk koper, tas, dan elektronik kecil.</p></div>
+<div class="card"><h3><span>Standar</span><span class="price">Rp250.000</span></h3>
+<p class="mu" style="margin:6px 0 0">1 pikap/mobil kecil + 2 tenaga bantu, jarak ≤10 km. Cocok untuk kasur lipat, lemari kecil, dan koper.</p></div>
+<div class="card"><h3><span>Lengkap</span><span class="price">Rp350.000</span></h3>
+<p class="mu" style="margin:6px 0 0">1 pikap + 2 tenaga bantu + bongkar-pasang sederhana, jarak ≤15 km. Cocok untuk kasur, lemari, meja, dan elektronik.</p></div>
+<p class="note">Tambahan: jarak lebih dari 15 km +Rp10.000/km; bongkar-pasang kompleks +Rp50.000. Harga ini masih harga uji untuk riset minat.</p>
+
+<h2>Cara Pesan</h2>
+<ol><li>Isi formulir “Saya Berminat” di bawah.</li><li>Kami hubungi lewat WhatsApp untuk konfirmasi barang dan jadwal.</li><li>Tim datang, angkut, dan pasang di kos baru.</li></ol>
+
+<h2 id="minat">Saya Berminat</h2>
+<div class="card">
+<label for="n">Nama</label><input id="n" autocomplete="name">
+<label for="w">Nomor WhatsApp</label><input id="w" type="tel" inputmode="tel" autocomplete="tel">
+<label for="a">Kos asal</label><input id="a">
+<label for="t">Kos tujuan</label><input id="t">
+<label for="p">Paket yang diminati</label>
+<select id="p"><option>Ringan (Rp150.000)</option><option>Standar (Rp250.000)</option><option>Lengkap (Rp350.000)</option><option>Belum yakin</option></select>
+<label for="h">Harga yang menurut Anda wajar (Rp)</label><input id="h" type="number" inputmode="numeric" placeholder="contoh: 200000">
+<label for="r">Rencana pindah</label><input id="r" placeholder="contoh: akhir bulan ini">
+<label for="m">Apa yang membuat Anda ragu?</label><textarea id="m" rows="3"></textarea>
+<button id="go" type="button">Kirim Minat via WhatsApp</button>
+<p class="note">Tombol membuka WhatsApp dengan pesan yang sudah terisi. Anda tinggal menekan kirim.</p>
+</div>
+</main>
+<script>
+var WA = "62XXXXXXXXXX"; // GANTI dengan nomor WhatsApp Anda, format 62812...
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySaOC8LlurDwAcf8iRjRlSPCb30J0J0oDQSV2P6uE5fqKJgutD7SJ0aegbM0uf6Ozu_w/exec";
+
+document.getElementById("go").addEventListener("click", function () {
+  var v = function (i) { return (document.getElementById(i).value || "").trim(); };
+  
+  var payload = {
+    nama: v("n"),
+    wa: v("w"),
+    asal: v("a"),
+    tujuan: v("t"),
+    paket: v("p"),
+    harga: v("h"),
+    rencana: v("r"),
+    ragu: v("m")
+  };
+
+  if (!payload.nama && !payload.wa) {
+    alert("Mohon isi setidaknya Nama dan Nomor WhatsApp.");
+    return;
+  }
+
+  var btn = document.getElementById("go");
+  var oriText = btn.innerText;
+  btn.innerText = "Menyimpan & Membuka WA...";
+  btn.disabled = true;
+
+  // Kirim data ke Google Sheets jika SCRIPT_URL sudah diisi
+  if (SCRIPT_URL && SCRIPT_URL.trim() !== "") {
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }).catch(function (err) {
+      console.error("Gagal mengirim ke Google Sheets:", err);
+    });
+  }
+
+  // Format pesan WhatsApp
+  var t = "Halo, saya berminat PindahKos.\nNama: " + payload.nama +
+          "\nWA: " + payload.wa +
+          "\nAsal: " + payload.asal +
+          "\nTujuan: " + payload.tujuan +
+          "\nPaket: " + payload.paket +
+          "\nHarga wajar: Rp" + payload.harga +
+          "\nRencana pindah: " + payload.rencana +
+          "\nKeraguan: " + payload.ragu;
+
+  // Buka WhatsApp
+  window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(t), "_blank");
+
+  setTimeout(function () {
+    btn.innerText = oriText;
+    btn.disabled = false;
+  }, 3000);
+});
+</script>
+</body>
+</html>
